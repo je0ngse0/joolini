@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="거래대금과 애널리스트·수급 신호를 함께 보는 주식 추천 실험실">
+    <title>주리니 — 오늘의 시장 신호</title>
+    <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+<header class="topbar">
+    <a class="brand" href="/" aria-label="주리니 홈">
+        <span class="brand-mark">J</span>
+        <span>주리니</span>
+    </a>
+    <div class="market-clock"><span class="live-dot"></span><span id="marketStatus">모의 장중</span></div>
+</header>
+
+<main>
+    <section class="hero">
+        <div class="hero-copy">
+            <p class="eyebrow">DATA-DRIVEN STOCK SIGNALS</p>
+            <h1>많이 거래되는 종목부터,<br><em>이유 있는 추천</em>을 만나보세요.</h1>
+            <p class="hero-description">애널리스트 의견과 기관 수급, 가격 모멘텀을 한 점수에 담았습니다. 숫자의 근거와 시점까지 투명하게 확인하세요.</p>
+        </div>
+        <div class="hero-stat">
+            <span>현재 1위</span>
+            <strong id="leaderName">불러오는 중</strong>
+            <div><b id="leaderTurnover">—</b><small>환산 거래대금</small></div>
+        </div>
+    </section>
+
+    <section class="notice" id="dataNotice" aria-label="데이터 안내">
+        <span id="dataMode">확인 중</span>
+        <p id="dataMessage">데이터 연결 상태를 확인하고 있습니다.</p>
+    </section>
+
+    <section class="dashboard">
+        <div class="section-heading">
+            <div>
+                <p class="eyebrow">MARKET PULSE</p>
+                <h2>거래대금 상위 종목</h2>
+            </div>
+            <div class="updated">데이터 기준 <time id="updatedAt">—</time></div>
+        </div>
+
+        <div class="controls">
+            <div class="segmented" role="group" aria-label="시장 선택">
+                <button class="active" data-market="ALL">통합</button>
+                <button data-market="KR">한국</button>
+                <button data-market="US">미국</button>
+            </div>
+            <div class="rating-filters" role="group" aria-label="추천 등급 선택">
+                <button class="active" data-rating="ALL">전체</button>
+                <button data-rating="RECOMMEND">추천</button>
+                <button data-rating="WATCH">관망</button>
+                <button data-rating="AVOID">비추천</button>
+            </div>
+            <label class="search">
+                <span class="sr-only">종목 검색</span>
+                <input id="searchInput" type="search" placeholder="종목명 또는 코드 검색" autocomplete="off">
+            </label>
+        </div>
+
+        <div class="table-wrap">
+            <table>
+                <thead>
+                <tr>
+                    <th>순위 / 종목</th>
+                    <th>현재가</th>
+                    <th>등락률</th>
+                    <th>거래대금 <span class="sort-arrow">↓</span></th>
+                    <th>추천 신호</th>
+                    <th>점수</th>
+                </tr>
+                </thead>
+                <tbody id="stockRows">
+                <tr><td colspan="6" class="loading">시장 신호를 불러오고 있습니다…</td></tr>
+                </tbody>
+            </table>
+        </div>
+        <div id="emptyState" class="empty" hidden>조건에 맞는 종목이 없습니다.</div>
+    </section>
+
+    <section class="methodology">
+        <div>
+            <p class="eyebrow">HOW IT WORKS</p>
+            <h2>추천보다 중요한 건<br>추천의 이유입니다.</h2>
+        </div>
+        <div class="method-grid">
+            <article><span>01</span><h3>애널리스트</h3><p>목표가와 의견 변화, 분석기관 수를 종합합니다.</p></article>
+            <article><span>02</span><h3>기관 수급</h3><p>한국은 외국인·기관, 미국은 13F·내부자 신호를 봅니다.</p></article>
+            <article><span>03</span><h3>모멘텀</h3><p>가격 방향과 거래량의 이례적인 변화를 포착합니다.</p></article>
+        </div>
+    </section>
+</main>
+
+<dialog id="stockDialog">
+    <button class="dialog-close" aria-label="상세 닫기">×</button>
+    <div id="dialogContent"></div>
+</dialog>
+
+<footer>
+    <strong>주리니</strong>
+    <p>본 서비스의 등급은 개인화되지 않은 정량 정보이며 투자자문이나 수익 보장이 아닙니다.</p>
+</footer>
+<script src="/app.js"></script>
+</body>
+</html>
